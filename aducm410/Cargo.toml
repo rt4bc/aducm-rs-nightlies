@@ -1,5 +1,5 @@
 [package]
-edition = "2025"
+edition = "2021"
 name = "aducm410"
 version = "0.1.0"
 authors = ["RT4BC <bochao.me@gmail.com>", "aducm-rs Contributors"]
@@ -21,7 +21,7 @@ portable-atomic = { version = "1", default-features = false, optional = true }
 
 [package.metadata.docs.rs]
 features = ['atomics', 'critical-section', 'defmt', 'rt', 'aducm410']
-default-target = "thumbv7em-none-eabihf"
+default-target = "thumbv8m.main-none-eabihf"
 targets = []
 
 [features]
