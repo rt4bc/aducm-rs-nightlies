@@ -25,4 +25,3 @@ pub use self::generic::*;
 
 #[cfg(feature = "aducm410")]
 pub mod aducm410;
-

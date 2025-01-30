@@ -11,76 +11,37 @@
 
 [package]
 edition = "2021"
-rust-version = "1.65"
 name = "aducm410-staging"
 version = "0.1.0"
-authors = [
-    "RT4BC <bochao.me@gmail.com>",
-    "aducm-rs Contributors",
-]
-build = "build.rs"
-autobins = false
-autoexamples = false
-autotests = false
-autobenches = false
+authors = ["RT4BC <bochao.me@gmail.com>"]
 description = "Device support crates for ADuCM devices"
-readme = "README.md"
-keywords = [
-    "aducm410",
-    "svd2rust",
-    "no_std",
-    "embedded",
-]
-categories = [
-    "embedded",
-    "no-std",
-]
-license = "MIT/Apache-2.0"
 repository = "https://github.com/rt4bc/aducm-rs"
+readme = "README.md"
+keywords = ["aducm410", "svd2rust", "no_std", "embedded"]
+categories = ["embedded", "hardware-support", "no-std"]
+license = "MIT/Apahce-2.0"
+rust-version = "1.65"
+build = "build.rs"
+
+[dependencies]
+critical-section = { version = "1.0", optional = true }
+cortex-m = "0.7.7"
+cortex-m-rt = { version = "0.7.3", optional = true }
+defmt = { version = "0.3.3", optional = true }
+vcell = "0.1.3"
+portable-atomic = { version = "1", default-features = false, optional = true }
 
 [package.metadata.docs.rs]
+features = ["atomics", "critical-section", "defmt", "rt", "aducm410"]
 default-target = "thumbv8m.main-none-eabihf"
-features = [
-    "atomics",
-    "critical-section",
-    "defmt",
-    "rt",
-    "aducm410",
-]
 targets = []
 
 [lib]
 name = "aducm410_staging"
 path = "src/lib.rs"
 
-[dependencies.cortex-m]
-version = "0.7.7"
-
-[dependencies.cortex-m-rt]
-version = "0.7.3"
-optional = true
-
-[dependencies.critical-section]
-version = "1.0"
-optional = true
-
-[dependencies.defmt]
-version = "0.3.5"
-optional = true
-
-[dependencies.portable-atomic]
-version = "1"
-optional = true
-default-features = false
-
-[dependencies.vcell]
-version = "0.1.3"
-
 [features]
-atomics = ["dep:portable-atomic"]
-default = [
-    "critical-section",
-    "rt",
-]
+default = ["critical-section", "rt"]
 rt = ["cortex-m-rt/device"]
+atomics = ["dep:portable-atomic"]
 aducm410 = []
